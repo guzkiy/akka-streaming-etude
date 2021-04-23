@@ -36,11 +36,11 @@ class DebtTransformationsTestSuite  extends AnyFunSuite with MockFactory {
     val debt = debtWithPlan._1
     val paymentsFacade = Function.tupled(mockPaymentsFacade _)(debtWithPlan)
     val debtJson = parse(serialization.write(debt), useBigDecimalForDouble = true)
-    val debtEnriched = DebtTransformations.enrich(debtJson)(paymentsFacade)
+    val debtEnriched = DebtTransformations.enrich(paymentsFacade, debtJson)
     assert((debtEnriched  \ "id").values == debt.id)
     assert((debtEnriched  \ "is_in_payment_plan").values == true)
     assert((debtEnriched  \ "remaining_amount").values == BigDecimal("607.67"))
     // make sure ISO format
-    assert((debtEnriched \ "next_payment_due_date") == JString("2019-06-19"))
+    assert((debtEnriched \ "next_payment_due_date") == JString("2020-08-12"))
   }
 }

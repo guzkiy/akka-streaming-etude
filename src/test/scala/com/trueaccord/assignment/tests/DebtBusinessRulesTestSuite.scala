@@ -28,17 +28,17 @@ class DebtBusinessRulesTestSuite extends AnyFunSuite {
 
   test("is_in_payment_plan tests")  {
       val (debt, planMayBe, payments) = debtWithPlan
-      assert( DebtBusinessRules.isInPaymentPlan(planMayBe, payments))
+      assert( DebtBusinessRules.isPaymentPlanActive(planMayBe, payments))
   }
 
   test("is_in_payment_plan tests with no plan")  {
       val (debt, planMayBe, payments) = debtWithNoPlan
-      assert(! DebtBusinessRules.isInPaymentPlan(planMayBe, payments))
+      assert(! DebtBusinessRules.isPaymentPlanActive(planMayBe, payments))
   }
 
   test("is_in_payment_plan tests debt paid off")  {
       val (debt, planMayBe, payments) = debtPaidOff
-      assert(! DebtBusinessRules.isInPaymentPlan(planMayBe, payments))
+      assert(! DebtBusinessRules.isPaymentPlanActive(planMayBe, payments))
   }
 
   test("remaining amount for debts in progress") {
