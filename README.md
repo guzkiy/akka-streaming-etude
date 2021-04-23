@@ -2,9 +2,10 @@
 
 ## General notes
 
-1. In the general spirit of Linux / small utilities the admin tool is designed to handle big datasets and let a user to pipe the output for further processing. That is achieved by streaming Debts data and processing/enriching Debt objects with extra fields "on the fly". The requirements to keep all the input fields in the output have been honored by the way of parsing / extending Json coming out of TrueAccord REST api.
+1. In the general spirit of Linux / small utilities the admin tool is designed to handle big datasets and let a user pipe the output for further processing. That is achieved by streaming Debts data and processing/enriching Debt objects with extra fields "on the fly". 
 2. The project is implemented in Scala utilizing akka-http framework. The choice is somewhat opinionated, but in my defence Scala does not have a good-blueprint http-client implementation, and Akka-streams provides an extensible stream-based layer to configure an http/rest client.  
 3. Due to the precise nature of the money calculations BigDecimal arithmetic is used in the project.
+4. The requirements to keep all the input fields in the output have been honored by the way of parsing / extending Json coming out of TrueAccord REST api. https://github.com/guzkiy/akka-streaming-etude/blob/21f973b7c93e00e822ad277b2bd9c9208f9d3596/src/main/scala/com/trueaccord/assignment/DebtBusinessRules.scala#L126
 
 Below is a short description of the classes and interfaces.
 1. PaymentsClient[T]: the trait defines a simple interface to a rest(or another) service. The interface is not strictly necessary for the implementation but simplifies the development and makes easy mocking the backend services in testing. https://github.com/guzkiy/akka-streaming-etude/blob/21f973b7c93e00e822ad277b2bd9c9208f9d3596/src/main/scala/com/trueaccord/assignment/PaymentsClient.scala#L18
