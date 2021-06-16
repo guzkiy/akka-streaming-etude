@@ -1,4 +1,4 @@
-# Take Home project
+# Streaming utility project
 
 ## General notes
 
